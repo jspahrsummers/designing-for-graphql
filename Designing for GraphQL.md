@@ -387,7 +387,7 @@ fragment friendFields on User {
 
 ---
 
-![Pencil on an open notebook](asets/jan-kahanek-g3O5ZtRk2E4-unsplash.jpg)
+![Pencil on an open notebook](assets/jan-kahanek-g3O5ZtRk2E4-unsplash.jpg)
 
 # [fit] Remember…
 
