@@ -43,14 +43,16 @@ list: alignment(left)
 # **Problem:** under-fetching
 
 - More app features = more data required
-- Server implementation has to be updated
+- Server implementation needs to be updated
 - **Bad solution:** N+1 query patterns
 
 ^ Workarounds like "detailed" resources or `?detail=full` start inching toward GraphQL anyway, but less precisely!
 
 ---
 
-# Why GraphQL?
+![inline](assets/GraphQL Logo.svg)
+
+# [fit] **Introducing** GraphQL
 
 ---
 
@@ -63,22 +65,26 @@ list: alignment(left)
 
 # Client-driven
 
-- Client gets exactly what it wants
-- Other architectures are friendly to server implementors but not clients
-- Requires the server to be more defensive!
+- Client gets **exactly** what it wants
+- Fetch only the data needed for presentation
+- Requires the server to be more flexible!
+
+^ Other architectures are friendly to server implementors but not clients
 
 ---
 
 # Strongly-typed & introspective
 
-- Queries are type-checked before execution
-- The server can guarantee the shape of the response
+- Queries are **type checked** before execution
+- Server can guarantee the shape of the response
 - Tools can check query validity, inspect the schema
 
 ^ https://graphql.org/learn/introspection/
 https://github.com/graphql/graphiql
 
 ---
+
+![](assets/ryan-quintal-US9Tc9pKNBU-unsplash.jpg)
 
 # GraphQL
 # primitives
@@ -270,43 +276,47 @@ fragment friendFields on User {
 ```
 
 [.column]
-- Fetch the same fields in multiple places
-- Compose many different fetches into one
-- Pattern-match on type within a query
+- Fetch similar fields in **multiple places**
+- **Compose** many different fetches into one
+- **Pattern match** on types within a query
 
 ^ https://spec.graphql.org/June2018/#sec-Language.Fragments
 
 ---
+
+![](assets/katya-austin-4Vg6ez9jaec-unsplash.jpg)
 
 ## **(some)**
 # [fit] Best practices
 
 ---
 
-# Server design should focus on types
+# Server should design **types**
 
-- GraphQL schema should be designed around types that make sense
-- Don't make assumptions about client fetch patterns
-- Abstract away ugly details where possible
+- Schema should be clean, **graph-based**
+- Don't assume anything about client fetch patterns
+- Abstract away implementation details
 
 ^ e.g., data fulfilled by different backends
 
 ---
 
-# Client design should focus on fragments
+# Client should design **fragments**
 
-- GraphQL queries are hierarchical
-- UI views are also hierarchical!
-- Define one fragment per view
-- Compose all the fragments on screen together into one single query
+- GraphQL queries are **hierarchical**
+- **UI views** are also hierarchical!
+- Define **one fragment per view**
+- Compose all fragments on screen into one query
 
 ---
 
-# Fetch-and-subscribe
+# **Unidirectional** data flow
 
-- Client fetches initial state in a query, observes changes with a subscription
-- No polling, repeat queries necessary
-- Local data store can be kept fully consistent
+- **Client data store** should be the source of truth
+- Fetch initial state in a **query**
+- Observe changes over time with a **subscription**
+- Make changes with a **mutation**
+- Refresh the UI whenever the data store changes
 - Be careful about race conditions!
 
 ^ [Live queries](https://www.youtube.com/watch?v=BSw05rJaCpA) solve the race condition problem, but aren't widely implemented
@@ -318,8 +328,8 @@ fragment friendFields on User {
 # Pagination
 
 [.column]
-- Use opaque cursors, not page numbers or offsets
-- Each page should yield a fully hierarchical object type
+- Use **opaque** cursors—avoid page numbers or offsets
+- Each page should have an **object graph**
 
 [.column]
 ```
@@ -345,34 +355,33 @@ fragment friendFields on User {
 
 # Backwards compatibility
 
-- GraphQL is unversioned
-- Fields, types should not be removed
-- Fields should not _change_ type
-- _Can_ replace list results with empty lists
+- GraphQL is **unversioned**
+- **Removing** fields, types will break clients
+- **Changing** field types will break clients
 - Use deprecation warnings!
 
-^ Includes input fields. These rules only apply when clients have actually shipped using the fields, of course.
+^ Includes input fields. These rules only apply when clients have actually shipped using the fields.
 
 ---
 
 # Nullability
 
-- Changing a field to nullable is a breaking change
+- Changing a field to **nullable** is a breaking change
 - Errors within a non-null field will fail the parent
-- Better to make fields nullable by default
+- Better to make fields **nullable by default**
 
 ---
 
 # Demand control
 
 [.column]
-- GraphQL requires the server to assume more complexity
-- The possible space of unreasonable or malicious queries is _huge_
+- **Flexibility** makes possible many **unreasonable or malicious queries**
+- The **GraphQL server** must manage this complexity
 
 [.column]
-- [Estimate query complexity](https://github.com/slicknode/graphql-query-complexity)
-- [Preregister supported queries](https://principledgraphql.com/operations#8-access-and-demand-control)
-- Apply backend rate limits
+1. [Estimate query complexity](https://github.com/slicknode/graphql-query-complexity)
+1. [Preregister supported queries](https://principledgraphql.com/operations#8-access-and-demand-control)
+1. Apply backend rate limits
 
 ^ e.g., maximum database QPS/QPM per client. If hit, issue HTTP 429 Too Many Requests or HTTP 503 Service Unavailable and require client to back off.
 
