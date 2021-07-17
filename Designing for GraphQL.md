@@ -387,6 +387,8 @@ fragment friendFields on User {
 
 ---
 
+![](assets/jan-kahanek-g3O5ZtRk2E4-unsplash.jpg)
+
 # [fit] Remember…
 
 ---
