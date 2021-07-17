@@ -19,7 +19,7 @@ list: alignment(left)
 
 # The Before Times
 
-![](assets/michelle-tresemer-MjKUUaYQQ6U-unsplash.jpg)
+![Dog looking scared/confused](assets/michelle-tresemer-MjKUUaYQQ6U-unsplash.jpg)
 
 1. [CORBA](https://chelseatroy.com/2018/08/01/api-design-part-1-before-there-was-rest/)
 1. [SOAP](https://chelseatroy.com/2018/08/01/api-design-part-1-before-there-was-rest/)
@@ -50,7 +50,7 @@ list: alignment(left)
 
 ---
 
-![inline](assets/GraphQL Logo.svg)
+![inline GraphQL logo](assets/GraphQL Logo.svg)
 
 # [fit] **Introducing** GraphQL
 
@@ -84,7 +84,7 @@ https://github.com/graphql/graphiql
 
 ---
 
-![](assets/ryan-quintal-US9Tc9pKNBU-unsplash.jpg)
+![Plastic toy blocks](assets/ryan-quintal-US9Tc9pKNBU-unsplash.jpg)
 
 # GraphQL
 # primitives
@@ -284,7 +284,7 @@ fragment friendFields on User {
 
 ---
 
-![](assets/katya-austin-4Vg6ez9jaec-unsplash.jpg)
+![Thumbs up from inside a plant](assets/katya-austin-4Vg6ez9jaec-unsplash.jpg)
 
 ## **(some)**
 # [fit] Best practices
@@ -387,7 +387,7 @@ fragment friendFields on User {
 
 ---
 
-![](assets/jan-kahanek-g3O5ZtRk2E4-unsplash.jpg)
+![Pencil on an open notebook](asets/jan-kahanek-g3O5ZtRk2E4-unsplash.jpg)
 
 # [fit] Remember…
 
