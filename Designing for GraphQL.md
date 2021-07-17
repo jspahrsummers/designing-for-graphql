@@ -12,16 +12,14 @@ list: alignment(left)
 # Why this talk?
 
 - GraphQL invalidates existing assumptions about client–server APIs
-- Shift from a _server-driven_ model to a _client-driven_ model
-- Powerful and flexible, but introduces new challenges
-
----
-
-# Why GraphQL?
+- Shift from a **server-driven** model to a **client-driven** model
+- **Powerful and flexible**, but introduces new challenges
 
 ---
 
 # The Before Times
+
+![](assets/michelle-tresemer-MjKUUaYQQ6U-unsplash.jpg)
 
 1. [CORBA](https://chelseatroy.com/2018/08/01/api-design-part-1-before-there-was-rest/)
 1. [SOAP](https://chelseatroy.com/2018/08/01/api-design-part-1-before-there-was-rest/)
@@ -35,8 +33,8 @@ list: alignment(left)
 # **Problem:** over-fetching
 
 - Server can't know which fields the client needs
-- Different clients need different data (e.g., mobile vs. desktop)
-- Wasteful to include unnecessary data in responses
+- Different clients need different data
+- **Bad solution:** include _all data_ in responses
 
 ^ Workarounds like "detailed" resources or `?detail=full` start inching toward GraphQL anyway, but less precisely!
 
@@ -44,13 +42,19 @@ list: alignment(left)
 
 # **Problem:** under-fetching
 
-- New app features means additional data required
-- Either the server code has to change or the client has to make more queries
-- End up with N+1 patterns if data is too limited
+- More app features = more data required
+- Server implementation has to be updated
+- **Bad solution:** N+1 query patterns
 
 ^ Workarounds like "detailed" resources or `?detail=full` start inching toward GraphQL anyway, but less precisely!
 
 ---
+
+# Why GraphQL?
+
+---
+
+[.quote: text-scale(0.5)]
 
 > GraphQL is unapologetically driven by the requirements of views and the front‐end engineers that write them.
 -- [GraphQL specification](https://spec.graphql.org/June2018/#sec-Overview)
@@ -246,11 +250,6 @@ subscription {
 # Fragments
 
 [.column]
-- Fetch the same fields in multiple places
-- Compose many different fetches into one
-- Pattern-match on type within a query
-
-[.column]
 ```
 {
   user(id: 4) {
@@ -269,6 +268,11 @@ fragment friendFields on User {
   profilePic(size: 50)
 }
 ```
+
+[.column]
+- Fetch the same fields in multiple places
+- Compose many different fetches into one
+- Pattern-match on type within a query
 
 ^ https://spec.graphql.org/June2018/#sec-Language.Fragments
 
@@ -308,6 +312,8 @@ fragment friendFields on User {
 ^ [Live queries](https://www.youtube.com/watch?v=BSw05rJaCpA) solve the race condition problem, but aren't widely implemented
 
 ---
+
+[.build-lists: false]
 
 # Pagination
 
@@ -381,6 +387,8 @@ fragment friendFields on User {
 ##  **_Design accordingly!_**
 
 ---
+
+[.build-lists: false]
 
 # Resources
 
